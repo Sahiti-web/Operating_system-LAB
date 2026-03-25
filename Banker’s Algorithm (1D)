@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, count = 0, available;
+    
+    printf("Enter number of processes: ");
+    scanf("%d", &n);
+
+    int max[n], alloc[n], need[n], done[n];
+
+    printf("Enter Max:\n");
+    for(i = 0; i < n; i++) scanf("%d", &max[i]);
+
+    printf("Enter Allocation:\n");
+    for(i = 0; i < n; i++) scanf("%d", &alloc[i]);
+
+    printf("Enter Available: ");
+    scanf("%d", &available);
+
+    // Need calculation
+    for(i = 0; i < n; i++) {
+        need[i] = max[i] - alloc[i];
+        done[i] = 0;
+    }
+
+    printf("Safe Sequence: ");
+
+    while(count < n) {
+        int found = 0;
+
+        for(i = 0; i < n; i++) {
+            if(!done[i] && need[i] <= available) {
+                printf("P%d ", i);
+                available += alloc[i];
+                done[i] = 1;
+                count++;
+                found = 1;
+            }
+        }
+
+        if(!found) {
+            printf("\nNot Safe\n");
+            return 0;
+        }
+    }
+
+    printf("\nSafe State\n");
+    return 0;
+}
