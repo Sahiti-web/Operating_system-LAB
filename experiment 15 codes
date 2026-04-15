@@ -1,0 +1,65 @@
+basic code:
+#!/bin/bash
+echo "enter the option"
+echo "a=print the date"
+echo "b=list all files"
+read choice
+
+case $choice in
+    a) date;;
+    b) ls;;
+    *) echo "not a valid option";;
+esac
+
+arithmatic operations :
+#!/bin/bash
+echo "enter num1"
+read num1
+echo "enter num2"
+read num2
+
+echo "choose an operation:"
+echo "1=Addition"
+echo "2=Subtraction"
+echo "3=Multiplication"
+echo "4=Division"
+read op
+
+case $op in
+    1) result=$((num1+num2))
+       echo "Result: $result";;
+    2) result=$((num1-num2))
+       echo "Result: $result";;
+    3) result=$((num1*num2))
+       echo "Result: $result";;
+    4) result=$((num1/num2))
+       echo "Result: $result";;
+    *) echo "invalid choice";;
+esac
+
+leap year:
+#!/bin/bash
+echo -n "Enter year: "
+read y
+
+# A year is a leap year if divisible by 4 but not 100, 
+# OR if it is divisible by 400.
+if [ $((y % 400)) -eq 0 ] || ([ $((y % 4)) -eq 0 ] && [ $((y % 100)) -ne 0 ]); then
+    echo "$y is a leap year"
+else
+    echo "$y is not a leap year"
+fi
+
+
+even or odd:
+#!/bin/bash
+echo -n "Enter a number: "
+read num
+
+# Check if the remainder is 0 when divided by 2
+if [ $((num % 2)) -eq 0 ]; then
+    echo "$num is Even"
+else
+    echo "$num is Odd"
+fi
+
